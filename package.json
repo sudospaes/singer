@@ -1,0 +1,21 @@
+{
+  "name": "singer",
+  "module": "app.ts",
+  "type": "module",
+  "author": "sudospace",
+  "license": "BSD-3-Clause",
+  "homepage": "github.com/sudospaes/singer",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "grammy": "^1.37.0"
+  },
+  "scripts": {
+    "start": "bun run src/app.ts",
+    "dev": "bun --watch src/app.ts"
+  }
+}
