@@ -12,7 +12,7 @@ class Schema {
   toJSON() {
     const objectedInbounds: object[] = [];
     const objectedOutbounds: object[] = [];
-    let objectedRoute: object;
+    let objectedRoute: object = {};
 
     this.inbounds.forEach((i) => {
       objectedInbounds.push(i.toObject());
