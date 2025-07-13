@@ -22,6 +22,7 @@ export type Protocol = ReturnType<(typeof protocol)[keyof typeof protocol]["prot
 export interface TlsOptions {
   server_name?: string;
   alpn?: string[];
+  insecure?: boolean;
   utls?: {
     enabled: boolean;
     fingerprint: string;
