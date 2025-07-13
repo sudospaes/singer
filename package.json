@@ -1,6 +1,6 @@
 {
   "name": "singer",
-  "module": "app.ts",
+  "module": "bot.ts",
   "type": "module",
   "author": "sudospace",
   "license": "BSD-3-Clause",
@@ -15,7 +15,7 @@
     "grammy": "^1.37.0"
   },
   "scripts": {
-    "start": "bun run src/app.ts",
-    "dev": "bun --watch src/app.ts"
+    "start": "bun run src/bot.ts",
+    "dev": "bun --watch src/bot.ts"
   }
 }
