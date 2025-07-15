@@ -1,7 +1,6 @@
 import transport from "singbox/transport";
 import protocol from "singbox/protocol";
 
-//* Types
 type InboundTypes = "direct" | "mixed" | "socks" | "http" | "vmess" | "trojan" | "vless" | "tun" | "redirect";
 type OutboundTypes =
   | "direct"
@@ -18,7 +17,6 @@ type OutboundTypes =
 export type Transport = ReturnType<(typeof transport)[keyof typeof transport]["prototype"]["toObject"]>;
 export type Protocol = ReturnType<(typeof protocol)[keyof typeof protocol]["prototype"]["toObject"]>;
 
-//* Interfaces
 export interface TlsOptions {
   server_name?: string;
   alpn?: string[];
