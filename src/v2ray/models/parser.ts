@@ -1,6 +1,6 @@
 import type { V2RayProxy, QueryParams, TLSConfig, RealityConfig, ParsedUrlResult } from "v2ray/types/common";
 
-import { removeUndefinedEntries } from "utils/utils";
+import { removeUndefinedEntries } from "helper/utils";
 
 abstract class V2RayParser {
   protected declare proxy: V2RayProxy;

@@ -1,6 +1,6 @@
 import V2RayParser from "v2ray/models/parser";
 
-import { parseVmessUrl } from "utils/utils";
+import { parseVmessUrl } from "helper/v2ray";
 
 class Vless extends V2RayParser {
   override init(): this {
