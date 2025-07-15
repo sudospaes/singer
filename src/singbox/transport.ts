@@ -98,20 +98,9 @@ class HttpUpgrade {
   }
 }
 
-class Quic {
-  private readonly type = "quic";
-
-  toObject() {
-    return {
-      type: this.type,
-    };
-  }
-}
-
 export default {
   Http,
   Ws,
   Grpc,
   HttpUpgrade,
-  Quic,
 };
