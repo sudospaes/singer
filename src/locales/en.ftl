@@ -39,7 +39,7 @@ alert-message =
 
 # $err (String) - Error message.
 internal-error-message =
-    🥲 Oops! Sorry. Something wrong. please issue this error on <a href="https://github.com/sudospaes/singer/issues">GitHub</a>:
+    🥲 Oops! Sorry. Something wrong:
 
     <code>{ $err }</code>
 

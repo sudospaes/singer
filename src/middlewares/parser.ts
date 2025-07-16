@@ -16,6 +16,7 @@ parser.on("callback_query:data", async (ctx) => {
   try {
     proxy = new ProxyAdapter(ctx.session.type!, ctx.session.url!);
   } catch (error) {
+    ctx.deleteMessage();
     const err = error as Error;
     return ctx.reply(ctx.t("internal-error-message", { err: err.message }));
   }
