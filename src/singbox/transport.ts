@@ -55,10 +55,7 @@ class Grpc {
   private pingTimeout: string;
   private permitWithoutStream: boolean;
 
-  constructor(
-    serviceName: string,
-    option: { idleTimeout?: string; pingTimeout?: string; permitWithoutStream?: boolean }
-  ) {
+  constructor(serviceName: string, option: { idleTimeout?: string; pingTimeout?: string; permitWithoutStream?: boolean }) {
     this.serviceName = serviceName;
     this.idleTimeout = option.idleTimeout ? option.idleTimeout : "15s";
     this.pingTimeout = option.pingTimeout ? option.pingTimeout : "15s";
@@ -98,9 +95,4 @@ class HttpUpgrade {
   }
 }
 
-export default {
-  Http,
-  Ws,
-  Grpc,
-  HttpUpgrade,
-};
+export { Http, Ws, Grpc, HttpUpgrade };

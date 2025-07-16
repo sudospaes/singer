@@ -1,21 +1,18 @@
-import transport from "singbox/transport";
-import protocol from "singbox/protocol";
+import { Http, HttpUpgrade, Grpc, Ws } from "singbox/transport";
+import { Vless, Vmess, Trojan } from "singbox/protocol";
 
 type InboundTypes = "direct" | "mixed" | "socks" | "http" | "vmess" | "trojan" | "vless" | "tun" | "redirect";
-type OutboundTypes =
-  | "direct"
-  | "block"
-  | "socks"
-  | "http"
-  | "vmess"
-  | "trojan"
-  | "vless"
-  | "dns"
-  | "selector"
-  | "urltest";
 
-export type Transport = ReturnType<(typeof transport)[keyof typeof transport]["prototype"]["toObject"]>;
-export type Protocol = ReturnType<(typeof protocol)[keyof typeof protocol]["prototype"]["toObject"]>;
+type OutboundTypes = "direct" | "block" | "socks" | "http" | "vmess" | "trojan" | "vless" | "dns" | "selector" | "urltest";
+
+export type Transport =
+  | ReturnType<Http["toObject"]>
+  | ReturnType<HttpUpgrade["toObject"]>
+  | ReturnType<Grpc["toObject"]>
+  | ReturnType<Ws["toObject"]>
+  | undefined;
+
+export type Protocol = Vless | Vmess | Trojan;
 
 export interface TlsOptions {
   server_name?: string;
@@ -39,7 +36,13 @@ export interface InboundOptions {
   auto_route?: boolean;
   endpoint_independent_nat?: boolean;
   mtu?: number;
-  platform?: { http_proxy: { enabled: boolean; server: string; server_port: number } };
+  platform?: {
+    http_proxy: {
+      enabled: boolean;
+      server: string;
+      server_port: number;
+    };
+  };
   stack?: string;
   strict_route?: boolean;
   listen?: string;
@@ -63,6 +66,17 @@ export interface OutboundOptions {
 export interface RouteOptions {
   auto_detect_interface?: boolean;
   final?: string;
-  rule_set?: { download_detour: string; format: string; tag: string; type: string; url: string }[];
-  rules?: { action: string; clash_mode?: string; outbound?: string; rule_set?: string[] }[];
+  rule_set?: {
+    download_detour: string;
+    format: string;
+    tag: string;
+    type: string;
+    url: string;
+  }[];
+  rules?: {
+    action: string;
+    clash_mode?: string;
+    outbound?: string;
+    rule_set?: string[];
+  }[];
 }

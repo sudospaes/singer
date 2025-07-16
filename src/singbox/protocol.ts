@@ -53,8 +53,4 @@ class Trojan {
   }
 }
 
-export default {
-  Vless,
-  Vmess,
-  Trojan,
-};
+export { Vless, Vmess, Trojan };
