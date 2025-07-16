@@ -1,9 +1,13 @@
 import type { Protocol, OutboundOptions } from "singbox/types/common";
 
-class Outbound {
+class SingboxOutbound {
   constructor(private options: OutboundOptions, private client?: Protocol) {
     this.options = options;
     this.client = client;
+  }
+
+  get tag() {
+    return this.options.tag;
   }
 
   toObject() {
@@ -21,4 +25,4 @@ class Outbound {
   }
 }
 
-export default Outbound;
+export default SingboxOutbound;

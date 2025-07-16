@@ -1,9 +1,9 @@
-import type Inbound from "singbox/inbound";
-import type Outbound from "singbox/outbound";
-import type Route from "singbox/route";
+import type SingboxInbound from "singbox/inbound";
+import type SingboxOutbound from "singbox/outbound";
+import type SingboxRoute from "singbox/route";
 
-class Schema {
-  constructor(private inbounds: Inbound[], private outbounds: Outbound[], private route: Route) {
+class SingboxSchema {
+  constructor(private inbounds: SingboxInbound[], private outbounds: SingboxOutbound[], private route: SingboxRoute) {
     this.inbounds = inbounds;
     this.outbounds = outbounds;
     this.route = route;
@@ -32,4 +32,4 @@ class Schema {
   }
 }
 
-export default Schema;
+export default SingboxSchema;

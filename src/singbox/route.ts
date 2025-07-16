@@ -1,6 +1,6 @@
 import type { RouteOptions } from "./types/common";
 
-class Route {
+class SingboxRoute {
   constructor(private options: RouteOptions) {}
 
   toObject() {
@@ -14,4 +14,4 @@ class Route {
   }
 }
 
-export default Route;
+export default SingboxRoute;

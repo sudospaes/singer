@@ -1,9 +1,9 @@
 import { Http, HttpUpgrade, Grpc, Ws } from "singbox/transport";
 import { Vless, Vmess, Trojan } from "singbox/protocol";
 
-type InboundTypes = "direct" | "mixed" | "socks" | "http" | "vmess" | "trojan" | "vless" | "tun" | "redirect";
+type InboundTypes = "mixed" | "tun";
 
-type OutboundTypes = "direct" | "block" | "socks" | "http" | "vmess" | "trojan" | "vless" | "dns" | "selector" | "urltest";
+type OutboundTypes = "direct" | "vmess" | "trojan" | "vless" | "selector" | "urltest";
 
 export type Transport =
   | ReturnType<Http["toObject"]>

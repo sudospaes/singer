@@ -1,8 +1,12 @@
 import type { InboundOptions } from "singbox/types/common";
 
-class Inbound {
+class SingboxInbound {
   constructor(private options: InboundOptions) {
     this.options = options;
+  }
+
+  get tag() {
+    return this.options.tag;
   }
 
   toObject() {
@@ -14,4 +18,4 @@ class Inbound {
   }
 }
 
-export default Inbound;
+export default SingboxInbound;
