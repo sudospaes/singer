@@ -1,8 +1,8 @@
-import V2RayParser from "v2ray/models/parser";
+import BaseProxyParser from "v2ray/base-proxy-parser";
 
 import { parseVmessUrl } from "helper/v2ray";
 
-class Vless extends V2RayParser {
+class Vless extends BaseProxyParser {
   override init(): this {
     const { address, port, id } = this.parseUrl();
 
@@ -10,7 +10,7 @@ class Vless extends V2RayParser {
       protocol: "vless",
       address,
       port,
-      uuid: id,
+      id: id,
       flow: this.queryParams.flow,
     };
 
@@ -20,7 +20,7 @@ class Vless extends V2RayParser {
   }
 }
 
-class Trojan extends V2RayParser {
+class Trojan extends BaseProxyParser {
   override init(): this {
     const { address, port, id } = this.parseUrl();
 
@@ -28,7 +28,7 @@ class Trojan extends V2RayParser {
       protocol: "trojan",
       address,
       port,
-      password: id,
+      id,
     };
 
     this.parseTransport();
@@ -37,7 +37,7 @@ class Trojan extends V2RayParser {
   }
 }
 
-class Vmess extends V2RayParser {
+class Vmess extends BaseProxyParser {
   constructor(url: string) {
     const parsedUrl = parseVmessUrl(url);
     super(parsedUrl);
@@ -50,8 +50,8 @@ class Vmess extends V2RayParser {
       protocol: "vmess",
       address,
       port,
-      uuid: id,
-      security: this.queryParams.scy,
+      id,
+      scy: this.queryParams.scy,
     };
 
     this.parseTransport();
@@ -60,4 +60,4 @@ class Vmess extends V2RayParser {
   }
 }
 
-export { Vless, Trojan, Vmess };
+export default { Vless, Trojan, Vmess };

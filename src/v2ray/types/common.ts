@@ -1,4 +1,3 @@
-export type V2RayProxy = VlessConfig | VmessConfig | TrojanConfig;
 export type TransportType = "tcp" | "grpc" | "ws" | "httpupgrade";
 export type HeaderType = "http";
 export type SecurityType = "tls" | "reality";
@@ -42,10 +41,14 @@ export interface QueryParams {
   scy?: string;
 }
 
-interface V2RayConfig {
+export interface V2RayProxy {
   protocol: "vless" | "vmess" | "trojan";
   address: string;
   port: number;
+
+  id: string;
+  flow?: string; // Vless flow
+  scy?: string; // Vmess encryption method
 
   // Transport settings
   transportType?: TransportType;
@@ -57,21 +60,4 @@ interface V2RayConfig {
   // Security settings
   tls?: TLSConfig;
   reality?: RealityConfig;
-}
-
-interface VlessConfig extends V2RayConfig {
-  protocol: "vless";
-  uuid: string;
-  flow?: string;
-}
-
-interface VmessConfig extends V2RayConfig {
-  protocol: "vmess";
-  uuid: string;
-  security?: string; // encryption method (auto, aes-128-gcm, chacha20-poly1305, none)
-}
-
-interface TrojanConfig extends V2RayConfig {
-  protocol: "trojan";
-  password: string;
 }
