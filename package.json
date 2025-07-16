@@ -1,5 +1,6 @@
 {
   "name": "singer",
+  "version": "1.0.0",
   "module": "bot.ts",
   "type": "module",
   "author": "sudospace",

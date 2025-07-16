@@ -6,4 +6,5 @@ export type BotContext = Context & I18nFlavor & SessionFlavor<SessionData>;
 interface SessionData {
   type?: "vless" | "vmess" | "trojan";
   url?: string;
+  buffer?: Buffer;
 }

@@ -16,4 +16,16 @@ i18n.use(
   })
 );
 
+i18n.use((ctx, next) => {
+  const originalReply = ctx.reply.bind(ctx);
+  ctx.reply = (text, other) => {
+    return originalReply(text, {
+      parse_mode: "HTML",
+      link_preview_options: { is_disabled: true },
+      ...other,
+    });
+  };
+  next();
+});
+
 export default i18n;

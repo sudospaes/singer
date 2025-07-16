@@ -14,6 +14,15 @@ export function removeUndefinedEntries(obj: any): any {
   return result;
 }
 
+export function generateTag() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let tag = "";
+  for (let i = 0; i < 6; i++) {
+    tag += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return tag;
+}
+
 export function rootPath(): string {
   return process.cwd();
 }
