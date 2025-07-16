@@ -13,7 +13,7 @@ guide =
     I currently just can convert these protocols to singbox configuration:
 
     <b>Vless, Vmess, Trojan</b>
-    <b>TCP, HTTP, WS, GRPC, HTTP-UPGRADE</b>
+    <b>TCP, WS, GRPC, HTTP-UPGRADE</b>
     <b>TLS, Reality</b>
 
     therwise you will not get any output or the final output will not work.
