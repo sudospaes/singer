@@ -35,7 +35,7 @@ Security layers:
 
 3. Touch `.env` file in the bot directory.
 
-4. Paste `BOT_TOKEN=your_bot_token"` in that.
+4. Paste `BOT_TOKEN=your_bot_token` in that.
 
 5. Run these commands:
 
