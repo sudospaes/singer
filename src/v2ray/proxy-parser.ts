@@ -1,6 +1,6 @@
 import BaseProxyParser from "v2ray/base-proxy-parser";
 
-import { parseVmessUrl } from "helper/v2ray";
+import { parseVmessUrl } from "v2ray/utils";
 
 class Vless extends BaseProxyParser {
   override init(): this {
