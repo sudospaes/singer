@@ -120,6 +120,7 @@ class TemplateAdapter {
       case "ir-direct":
         route.rule_set?.push(
           {
+            download_detour: "direct",
             tag: "iran-geosite-ads",
             type: "remote",
             format: "binary",
@@ -127,6 +128,7 @@ class TemplateAdapter {
             url: "https://github.com/bootmortis/sing-geosite/releases/latest/download/geosite-ads.srs",
           },
           {
+            download_detour: "direct",
             tag: "iran-geosite-all",
             type: "remote",
             format: "binary",
