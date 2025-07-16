@@ -67,14 +67,15 @@ export interface RouteOptions {
   auto_detect_interface?: boolean;
   final?: string;
   rule_set?: {
-    download_detour: string;
+    download_detour?: string;
     format: string;
     tag: string;
     type: string;
+    update_interval?: string;
     url: string;
   }[];
   rules?: {
-    action: string;
+    action?: string;
     clash_mode?: string;
     outbound?: string;
     rule_set?: string[];

@@ -120,18 +120,18 @@ class TemplateAdapter {
       case "ir-direct":
         route.rule_set?.push(
           {
-            download_detour: "direct",
-            format: "binary",
-            tag: "geosite-ir",
+            tag: "iran-geosite-ads",
             type: "remote",
-            url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ir.srs",
+            format: "binary",
+            update_interval: "7d",
+            url: "https://github.com/bootmortis/sing-geosite/releases/latest/download/geosite-ads.srs",
           },
           {
-            download_detour: "direct",
-            format: "binary",
-            tag: "geoip-ir",
+            tag: "iran-geosite-all",
             type: "remote",
-            url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/ir.srs",
+            format: "binary",
+            update_interval: "7d",
+            url: "https://github.com/bootmortis/sing-geosite/releases/latest/download/geosite-all.srs",
           }
         );
         route.rules?.push(
@@ -149,9 +149,14 @@ class TemplateAdapter {
             outbound: "proxy",
           },
           {
+            rule_set: ["iran-geosite-ads"],
+            action: "route",
+            outbound: "block",
+          },
+          {
+            rule_set: ["iran-geosite-all"],
             action: "route",
             outbound: "direct",
-            rule_set: ["geosite-ir", "geoip-ir"],
           }
         );
         break;
