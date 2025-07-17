@@ -1,5 +1,5 @@
 welcome = 
-    Hello 😃. Using me, you can convert your <b>V2Ray URLs</b> to a <b>V2Ray URLs</b> file for the <b>SingBox official clients</b>.
+    Hello 😃. Using me, you can convert your <b>V2Ray URLs</b> to a configuration file for the <b>SingBox official clients</b>.
     
     Use /help to see guide.
     
@@ -16,7 +16,7 @@ guide =
 
     <b>Vless, Vmess, Trojan</b>
     <b>TCP, WS, GRPC, HTTP-UPGRADE</b>
-    <b>TLS, Reality</b>
+    <b>Non-TLS, TLS, Reality</b>
 
     therwise you will not get any output or the final output will not work.
 
@@ -29,8 +29,7 @@ guide =
 
 
 unsupported-protocol =
-    ⚠️ Unsupported Procotol!
-    Use /help to supported procotol.
+    ⚠️ Invalid request. Use /help to see guide.
 
 
 alert-message =
@@ -47,16 +46,16 @@ internal-error-message =
 menu-message =
     😉 Your configuration has been processed and is almost ready.
 
-    ❓ The <b>Directing traffic and routes</b> options allows you to use national services while the singbox is on.
+    ❓ The <b>Directing traffic</b> options allows you to use national services while the singbox is on.
 
     Choose one of the options below:
 
 
 ir-direct =
-    Directing 🇮🇷 traffic and routes
+    Directing 🇮🇷 traffic
 
-ch-direct =
-    Directing 🇨🇳 traffic and routes
+cn-direct =
+    Directing 🇨🇳 traffic
 
 no-direct =
     Without routing settings
