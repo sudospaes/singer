@@ -28,7 +28,7 @@ class SingboxSchema {
         route: objectedRoute,
       },
       null,
-      4
+      3
     );
   }
 }

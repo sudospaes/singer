@@ -5,7 +5,7 @@ class Tls {
 
   toObject() {
     return {
-      enable: true,
+      enabled: true,
       ...this.options,
     };
   }
