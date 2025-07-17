@@ -21,11 +21,15 @@ class SingboxSchema {
       objectedOutbounds.push(i.toObject());
     });
 
-    return JSON.stringify({
-      inbounds: objectedInbounds,
-      outbounds: objectedOutbounds,
-      route: objectedRoute,
-    });
+    return JSON.stringify(
+      {
+        inbounds: objectedInbounds,
+        outbounds: objectedOutbounds,
+        route: objectedRoute,
+      },
+      null,
+      4
+    );
   }
 }
 
