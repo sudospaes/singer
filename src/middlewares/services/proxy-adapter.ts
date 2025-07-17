@@ -1,5 +1,5 @@
 import parser from "v2ray/proxy-parser";
-import type { V2RayProxy } from "v2ray/types/common";
+import type { V2RayProxy, RealityConfig, TLSConfig } from "v2ray/types/common";
 
 import SingboxOutbound from "singbox/outbound";
 import { Vless, Vmess, Trojan } from "singbox/protocol";
@@ -18,7 +18,7 @@ class ProxyAdapter {
   private readonly proxy: V2RayProxy;
   private readonly client: Protocol;
   private readonly transportSettings: Transport;
-  private readonly tlsSettings: TlsOptions;
+  private readonly tlsSettings: TlsOptions | undefined;
   private readonly outbound: SingboxOutbound;
 
   constructor(type: ProxyTypes, url: string) {
@@ -93,9 +93,14 @@ class ProxyAdapter {
     }
   }
 
-  private createTlsSettings(): TlsOptions {
-    const tlsSettings: TlsOptions = {};
+  private createTlsSettings(): TlsOptions | undefined {
     const { proxy } = this;
+
+    if (!proxy.tls && !proxy.reality) {
+      return undefined;
+    }
+
+    const tlsSettings: TlsOptions = {};
 
     if (proxy.tls) {
       this.configureTls(tlsSettings, proxy.tls);
@@ -108,7 +113,7 @@ class ProxyAdapter {
     return tlsSettings;
   }
 
-  private configureTls(tlsSettings: TlsOptions, tls: any): void {
+  private configureTls(tlsSettings: TlsOptions, tls: TLSConfig): void {
     tlsSettings.server_name = tls.sni;
     tlsSettings.alpn = tls.alpn;
     tlsSettings.insecure = tls.allowInsecure;
@@ -121,7 +126,7 @@ class ProxyAdapter {
     }
   }
 
-  private configureReality(tlsSettings: TlsOptions, reality: any): void {
+  private configureReality(tlsSettings: TlsOptions, reality: RealityConfig): void {
     tlsSettings.server_name = reality.sni;
     tlsSettings.utls = {
       enabled: true,
