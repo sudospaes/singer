@@ -12,8 +12,7 @@ class SingboxSchema {
   toJSON() {
     const objectedInbounds: object[] = [];
     const objectedOutbounds: object[] = [];
-    let objectedRoute: object = {};
-
+    const objectedRoute = this.route.toObject();
     this.inbounds.forEach((i) => {
       objectedInbounds.push(i.toObject());
     });
@@ -21,8 +20,6 @@ class SingboxSchema {
     this.outbounds.forEach((i) => {
       objectedOutbounds.push(i.toObject());
     });
-
-    objectedRoute = this.route.toObject();
 
     return JSON.stringify({
       inbounds: objectedInbounds,

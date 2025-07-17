@@ -48,6 +48,9 @@ export interface InboundOptions {
   listen?: string;
   listen_port?: number;
   users?: { username: string; password: string }[];
+  sniff?: boolean;
+  sniff_override_destination?: boolean;
+  interface_name?: string;
 }
 
 export interface OutboundOptions {
@@ -79,5 +82,6 @@ export interface RouteOptions {
     clash_mode?: string;
     outbound?: string;
     rule_set?: string[];
+    ip_is_private?: boolean;
   }[];
 }
