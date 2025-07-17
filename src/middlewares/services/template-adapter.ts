@@ -43,58 +43,57 @@ class TemplateAdapter {
   private createTunInbound() {
     const inbound: InboundOptions = {
       type: "tun",
+      tag: "tun-in",
+      interface_name: "tun0",
       address: ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
-      auto_route: true,
-      endpoint_independent_nat: false,
       mtu: 9000,
-      platform: {
-        http_proxy: {
-          enabled: true,
-          server: "127.0.0.1",
-          server_port: 2080,
-        },
-      },
-      stack: "system",
+      auto_route: true,
       strict_route: false,
+      endpoint_independent_nat: false,
+      stack: "system",
+      sniff: true,
+      sniff_override_destination: true,
     };
     return new SingboxInbound(inbound);
   }
 
   private createMixedInbound() {
     const inbound: InboundOptions = {
+      type: "mixed",
+      tag: "mixed-in",
       listen: "127.0.0.1",
       listen_port: 2080,
-      type: "mixed",
-      users: [],
+      sniff: true,
+      sniff_override_destination: true,
     };
     return new SingboxInbound(inbound);
   }
 
   private createSelectorOutbound() {
     const outbound: OutboundOptions = {
-      outbounds: ["auto", "direct", this.proxyOutbound.tag!],
-      tag: "proxy",
       type: "selector",
+      tag: "proxy",
+      outbounds: ["auto", "direct", this.proxyOutbound.tag!],
     };
     return new SingboxOutbound(outbound);
   }
 
   private createUrltestOutbound() {
     const outbound: OutboundOptions = {
-      interval: "10m",
-      outbounds: [this.proxyOutbound.tag!],
-      tag: "auto",
-      tolerance: 50,
       type: "urltest",
+      tag: "auto",
+      outbounds: [this.proxyOutbound.tag!],
       url: "http://www.gstatic.com/generate_204",
+      interval: "10m",
+      tolerance: 50,
     };
     return new SingboxOutbound(outbound);
   }
 
   private createDirectOutbound() {
     const outbound: OutboundOptions = {
-      tag: "direct",
       type: "direct",
+      tag: "direct",
     };
     return new SingboxOutbound(outbound);
   }
@@ -105,11 +104,7 @@ class TemplateAdapter {
       final: "proxy",
       rules: [
         {
-          action: "sniff",
-        },
-        {
-          action: "route",
-          clash_mode: "Direct",
+          ip_is_private: true,
           outbound: "direct",
         },
       ],
@@ -120,86 +115,48 @@ class TemplateAdapter {
       case "ir-direct":
         route.rule_set?.push(
           {
-            download_detour: "direct",
-            tag: "iran-geosite-ads",
+            download_detour: "proxy",
+            tag: "geoip-ir",
             type: "remote",
             format: "binary",
-            update_interval: "7d",
-            url: "https://github.com/bootmortis/sing-geosite/releases/latest/download/geosite-ads.srs",
+            url: "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
           },
           {
-            download_detour: "direct",
-            tag: "iran-geosite-all",
+            download_detour: "proxy",
+            tag: "geosite-ir",
             type: "remote",
             format: "binary",
-            update_interval: "7d",
-            url: "https://github.com/bootmortis/sing-geosite/releases/latest/download/geosite-all.srs",
+            url: "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
           }
         );
-        route.rules?.push(
-          {
-            action: "sniff",
-          },
-          {
-            action: "route",
-            clash_mode: "Direct",
-            outbound: "direct",
-          },
-          {
-            action: "route",
-            clash_mode: "Global",
-            outbound: "proxy",
-          },
-          {
-            rule_set: ["iran-geosite-ads"],
-            action: "route",
-            outbound: "block",
-          },
-          {
-            rule_set: ["iran-geosite-all"],
-            action: "route",
-            outbound: "direct",
-          }
-        );
+        route.rules?.push({
+          rule_set: ["geosite-ir", "geoip-ir"],
+          outbound: "direct",
+        });
         break;
 
-      case "ch-direct":
+      case "cn-direct":
         route.rule_set?.push(
           {
-            download_detour: "direct",
-            format: "binary",
+            download_detour: "proxy",
             tag: "geosite-cn",
             type: "remote",
+            format: "binary",
             url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
           },
           {
-            download_detour: "direct",
-            format: "binary",
+            download_detour: "proxy",
             tag: "geoip-cn",
             type: "remote",
+            format: "binary",
             url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
           }
         );
-        route.rules?.push(
-          {
-            action: "sniff",
-          },
-          {
-            action: "route",
-            clash_mode: "Direct",
-            outbound: "direct",
-          },
-          {
-            action: "route",
-            clash_mode: "Global",
-            outbound: "proxy",
-          },
-          {
-            action: "route",
-            outbound: "direct",
-            rule_set: ["geosite-cn", "geoip-cn"],
-          }
-        );
+        route.rules?.push({
+          action: "route",
+          rule_set: ["geosite-cn", "geoip-cn"],
+          outbound: "direct",
+        });
         break;
     }
 
