@@ -1,5 +1,6 @@
 import { Http, HttpUpgrade, Grpc, Ws } from "singbox/transport";
 import { Vless, Vmess, Trojan } from "singbox/protocol";
+import Tls from "singbox/tls";
 
 export type InboundTypes = "mixed" | "tun";
 
@@ -11,6 +12,8 @@ export type Transport =
   | ReturnType<Grpc["toObject"]>
   | ReturnType<Ws["toObject"]>
   | undefined;
+
+export type TlsConfig = ReturnType<Tls["toObject"]>;
 
 export type Protocol = Vless | Vmess | Trojan;
 
@@ -63,7 +66,7 @@ export interface OutboundOptions {
   server_port?: number;
   tolerance?: number;
   transport?: Transport;
-  tls?: TlsOptions;
+  tls?: TlsConfig;
 }
 
 export interface RouteOptions {

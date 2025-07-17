@@ -4,7 +4,8 @@ import type { V2RayProxy, RealityConfig, TLSConfig } from "v2ray/types/common";
 import SingboxOutbound from "singbox/outbound";
 import { Vless, Vmess, Trojan } from "singbox/protocol";
 import { Ws, Http, Grpc, HttpUpgrade } from "singbox/transport";
-import type { Transport, TlsOptions, Protocol } from "singbox/types/common";
+import Tls from "singbox/tls";
+import type { Transport, TlsConfig, TlsOptions, Protocol } from "singbox/types/common";
 
 type ProxyTypes = "vless" | "vmess" | "trojan";
 
@@ -18,7 +19,7 @@ class ProxyAdapter {
   private readonly proxy: V2RayProxy;
   private readonly client: Protocol;
   private readonly transportSettings: Transport;
-  private readonly tlsSettings: TlsOptions | undefined;
+  private readonly tlsSettings: TlsConfig;
   private readonly outbound: SingboxOutbound;
 
   constructor(type: ProxyTypes, url: string) {
@@ -93,50 +94,53 @@ class ProxyAdapter {
     }
   }
 
-  private createTlsSettings(): TlsOptions | undefined {
+  private createTlsSettings(): TlsConfig {
     const { proxy } = this;
 
-    if (!proxy.tls && !proxy.reality) {
-      return undefined;
-    }
-
-    const tlsSettings: TlsOptions = {};
+    let tlsSettings = new Tls();
 
     if (proxy.tls) {
-      this.configureTls(tlsSettings, proxy.tls);
+      tlsSettings = this.configureTls(proxy.tls);
     }
 
     if (proxy.reality) {
-      this.configureReality(tlsSettings, proxy.reality);
+      tlsSettings = this.configureReality(proxy.reality);
     }
 
-    return tlsSettings;
+    return tlsSettings.toObject();
   }
 
-  private configureTls(tlsSettings: TlsOptions, tls: TLSConfig): void {
-    tlsSettings.server_name = tls.sni;
-    tlsSettings.alpn = tls.alpn;
-    tlsSettings.insecure = tls.allowInsecure;
+  private configureTls(tls: TLSConfig): Tls {
+    const tlsOptions: TlsOptions = {};
+
+    tlsOptions.server_name = tls.sni;
+    tlsOptions.alpn = tls.alpn;
+    tlsOptions.insecure = tls.allowInsecure;
 
     if (tls.fingerprint) {
-      tlsSettings.utls = {
+      tlsOptions.utls = {
         enabled: true,
         fingerprint: tls.fingerprint,
       };
     }
+    return new Tls(tlsOptions);
   }
 
-  private configureReality(tlsSettings: TlsOptions, reality: RealityConfig): void {
-    tlsSettings.server_name = reality.sni;
-    tlsSettings.utls = {
+  private configureReality(reality: RealityConfig): Tls {
+    const tlsOptions: TlsOptions = {};
+
+    tlsOptions.server_name = reality.sni;
+    tlsOptions.utls = {
       enabled: true,
       fingerprint: reality.fingerprint,
     };
-    tlsSettings.reality = {
+    tlsOptions.reality = {
       enabled: true,
       public_key: reality.publicKey,
       short_id: reality.shortId,
     };
+
+    return new Tls(tlsOptions);
   }
 }
 
