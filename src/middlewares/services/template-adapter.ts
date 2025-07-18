@@ -104,9 +104,6 @@ class TemplateAdapter {
       final: "proxy",
       rules: [
         {
-          action: "sniff",
-        },
-        {
           ip_is_private: true,
           outbound: "direct",
         },
@@ -133,8 +130,7 @@ class TemplateAdapter {
           }
         );
         route.rules?.push({
-          action: "route",
-          rule_set: ["geosite-ir", "geoip-ir"],
+          rule_set: ["geoip-ir", "geosite-ir"],
           outbound: "direct",
         });
         break;
@@ -157,8 +153,7 @@ class TemplateAdapter {
           }
         );
         route.rules?.push({
-          action: "route",
-          rule_set: ["geosite-cn", "geoip-cn"],
+          rule_set: ["geoip-cn", "geosite-cn"],
           outbound: "direct",
         });
         break;
