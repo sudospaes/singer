@@ -2,7 +2,7 @@ export type TransportType = "tcp" | "grpc" | "ws" | "httpupgrade";
 export type HeaderType = "http";
 export type SecurityType = "tls" | "reality";
 
-export interface TlsConfig {
+export interface TLSConfig {
   sni?: string;
   alpn?: string[];
   fingerprint?: string;
@@ -58,6 +58,6 @@ export interface V2RayProxy {
   serviceName?: string; // Used for GRPC
 
   // Security settings
-  tls?: TlsConfig;
+  tls?: TLSConfig;
   reality?: RealityConfig;
 }
