@@ -43,28 +43,29 @@ class TemplateAdapter {
   private createTunInbound() {
     const inbound: InboundOptions = {
       type: "tun",
-      tag: "tun-in",
-      interface_name: "tun0",
       address: ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
-      mtu: 9000,
       auto_route: true,
-      strict_route: false,
       endpoint_independent_nat: false,
+      mtu: 9000,
+      platform: {
+        http_proxy: {
+          enabled: true,
+          server: "127.0.0.1",
+          server_port: 2080,
+        },
+      },
       stack: "system",
-      sniff: true,
-      sniff_override_destination: true,
+      strict_route: false,
     };
     return new SingboxInbound(inbound);
   }
 
   private createMixedInbound() {
     const inbound: InboundOptions = {
-      type: "mixed",
-      tag: "mixed-in",
       listen: "127.0.0.1",
       listen_port: 2080,
-      sniff: true,
-      sniff_override_destination: true,
+      type: "mixed",
+      users: [],
     };
     return new SingboxInbound(inbound);
   }
@@ -83,8 +84,7 @@ class TemplateAdapter {
       type: "urltest",
       tag: "auto",
       outbounds: [this.proxyOutbound.tag!],
-      url: "http://www.gstatic.com/generate_204",
-      interval: "10m",
+      url: "https://www.gstatic.com/generate_204",
       tolerance: 50,
     };
     return new SingboxOutbound(outbound);
@@ -103,6 +103,9 @@ class TemplateAdapter {
       auto_detect_interface: true,
       final: "proxy",
       rules: [
+        {
+          action: "sniff",
+        },
         {
           ip_is_private: true,
           outbound: "direct",
@@ -130,6 +133,7 @@ class TemplateAdapter {
           }
         );
         route.rules?.push({
+          action: "route",
           rule_set: ["geosite-ir", "geoip-ir"],
           outbound: "direct",
         });
