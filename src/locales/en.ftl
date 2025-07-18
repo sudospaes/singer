@@ -20,11 +20,11 @@ guide =
 
     therwise you will not get any output or the final output will not work.
 
-    It is recommended to use version 1.11.14~1.11.5 of the official Singbox client.
-
     I am only able to understand v2ray urls like this example:
 
-    vless://550e8400-e29b-41d4-a716-446655440000@example.com:443?type=tcp&security=reality&sni=google.com&fp=chrome&pbk=publickey123&sid=shortid123#VlessReality
+    <code>vless://550e8400-e29b-41d4-a716-446655440000@example.com:443?type=tcp&security=reality&sni=google.com&fp=chrome&pbk=publickey123&sid=shortid123#VlessReality</code>
+
+    ♻️ It is recommended to use version 1.11.14~1.11.5 of the official Singbox client.
     
     ℹ️ <b>What you send is never collected, stored, or shared;</b>.
     <a href="https://github.com/sudospaes/singer/">See the source code to be sure</a>
