@@ -24,7 +24,7 @@ guide =
 
     <pre>vless://550e8400-e29b-41d4-a716-446655440000@example.com:443?type=tcp&security=reality&sni=google.com&fp=chrome&pbk=publickey123&sid=shortid123#VlessReality</pre>
 
-    ♻️ It is recommended to use version <b>1.11.14~1.11.5</b> of the official Singbox client.
+    ♻️ It is recommended to use Singbox v<b>1.11.14~1.11.5</b>.
     
     ℹ️ <b>What you send is never collected, stored, or shared</b>.
     <a href="https://github.com/sudospaes/singer/">See the source code to be sure</a>.
@@ -42,11 +42,11 @@ alert-message =
 internal-error-message =
     🥲 Oops! Sorry. Something wrong:
 
-    <code>{ $err }</code>
+    <pre>{ $err }</pre>
 
 
 menu-message =
-    😉 Your configuration has been processed and is almost ready.
+    😉 Your configuration is almost ready.
 
     ❓ The <b>Directing traffic</b> options allows you to use national services while the singbox is on.
 
@@ -63,4 +63,4 @@ no-direct =
     Without routing settings
 
 singbox-config-file-caption =
-    ✨ Your configuration has been ready. just import it to Singbox clients.
+    ✨ Your configuration has been ready.
