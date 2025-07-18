@@ -1,4 +1,4 @@
-import type { V2RayProxy, QueryParams, TLSConfig, RealityConfig, ParsedUrlResult } from "v2ray/types/common";
+import type { V2RayProxy, QueryParams, TlsConfig, RealityConfig, ParsedUrlResult } from "v2ray/types/common";
 
 import { removeUndefinedEntries } from "helper/utils";
 
@@ -77,7 +77,7 @@ abstract class BaseProxyParser {
 
     switch (security) {
       case "tls":
-        const tlsConfig: TLSConfig = {
+        const tlsConfig: TlsConfig = {
           sni,
           fingerprint: fp,
           alpn: alpn?.split(","),
