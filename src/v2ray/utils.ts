@@ -3,7 +3,7 @@ import type { QueryParams, TransportType, SecurityType } from "v2ray/types/commo
 export function parseVmessUrl(url: string): string {
   const base64 = url.slice(8).trim();
   if (!base64) {
-    throw new Error("Invalid VMess URL: empty base64 content");
+    throw new Error("Invalid URL format: empty base64 content");
   }
 
   let decoded: string;
@@ -24,7 +24,7 @@ export function parseVmessUrl(url: string): string {
 
   // Validate required fields
   if (!id || !add || !port) {
-    throw new Error("Invalid VMess config: missing required fields (uuid, address, port)");
+    throw new Error("Invalid URL format: missing required components");
   }
 
   const query = new URLSearchParams();

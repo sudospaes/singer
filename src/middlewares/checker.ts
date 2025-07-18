@@ -5,15 +5,11 @@ import type { BotContext } from "types/common";
 const checker = new Composer<BotContext>();
 
 checker.use((ctx, next) => {
-  if (ctx.callbackQuery && ctx.session.type && ctx.session.url) {
+  if (ctx.callbackQuery && ctx.session.type) {
     return next();
   }
 
-  ctx.session = {
-    type: undefined,
-    url: undefined,
-    buffer: undefined,
-  };
+  ctx.session = {};
 
   if (ctx.callbackQuery) {
     ctx.answerCallbackQuery({

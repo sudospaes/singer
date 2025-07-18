@@ -18,11 +18,11 @@ i18n.use(
 
 i18n.use((ctx, next) => {
   const originalReply = ctx.reply.bind(ctx);
-  ctx.reply = (text, other) => {
+  ctx.reply = (text, others) => {
     return originalReply(text, {
       parse_mode: "HTML",
       link_preview_options: { is_disabled: true },
-      ...other,
+      ...others,
     });
   };
   next();

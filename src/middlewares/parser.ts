@@ -21,11 +21,11 @@ parser.on("callback_query:data", async (ctx) => {
     return ctx.reply(ctx.t("internal-error-message", { err: err.message }));
   }
 
-  const singboxConfig = new TemplateAdapter(proxy, data).export();
-  ctx.session.buffer = Buffer.from(singboxConfig, "utf-8");
+  const singboxConfig = new TemplateAdapter(proxy, data);
+  const buffer = Buffer.from(singboxConfig.export(), "utf-8");
 
-  const tag = generateTag();
-  await ctx.replyWithDocument(new InputFile(ctx.session.buffer!, `@toSingBox-${tag}-${data}.json`), {
+  const fileName = `@toSingBox-${generateTag()}-${data}.json`;
+  await ctx.replyWithDocument(new InputFile(buffer, fileName), {
     caption: ctx.t("singbox-config-file-caption"),
   });
   ctx.deleteMessage();
