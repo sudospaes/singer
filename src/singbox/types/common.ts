@@ -1,6 +1,6 @@
-import { Http, HttpUpgrade, Grpc, Ws } from "singbox/transport";
-import { Vless, Vmess, Trojan } from "singbox/protocol";
-import Tls from "singbox/tls";
+import type Tls from "singbox/tls";
+import type { Vless, Vmess, Trojan } from "singbox/protocol";
+import type { Http, HttpUpgrade, Grpc, Ws } from "singbox/transport";
 
 export type InboundTypes = "mixed" | "tun";
 
@@ -13,7 +13,7 @@ export type Transport =
   | ReturnType<Ws["toObject"]>
   | undefined;
 
-export type TlsConfig = ReturnType<Tls["toObject"]>;
+export type TlsConfig = ReturnType<Tls["toObject"]> | undefined;
 
 export type Protocol = Vless | Vmess | Trojan;
 

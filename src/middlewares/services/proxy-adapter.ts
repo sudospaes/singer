@@ -97,7 +97,7 @@ class ProxyAdapter {
   private createTlsSettings(): TlsConfig {
     const { proxy } = this;
 
-    let tlsSettings = new Tls();
+    let tlsSettings = undefined;
 
     if (proxy.tls) {
       tlsSettings = this.configureTls(proxy.tls);
@@ -107,7 +107,7 @@ class ProxyAdapter {
       tlsSettings = this.configureReality(proxy.reality);
     }
 
-    return tlsSettings.toObject();
+    return tlsSettings ? tlsSettings.toObject() : undefined;
   }
 
   private configureTls(tls: TLSConfig): Tls {
