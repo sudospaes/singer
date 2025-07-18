@@ -4,7 +4,7 @@ welcome =
     Use /help to see guide.
     
     ⬇️ Singbox official clients:
-    Android: <a href="https://play.google.com/store/apps/details?id=io.nekohasekai.sfa">Google Play</a>  -  <a href="https://github.com/SagerNet/sing-box/releases">GitHub</a>
+    Android: <a href="https://github.com/SagerNet/sing-box/releases/tag/v1.11.15">GitHub</a>
     iOS, Mac: <a href="https://apps.apple.com/app/sing-box-vt/id6673731168">App Store</a>
     <a href="https://sing-box.sagernet.org/clients">Singbox Website</a>
 
@@ -19,6 +19,8 @@ guide =
     <b>Non-TLS, TLS, Reality</b>
 
     therwise you will not get any output or the final output will not work.
+
+    It is recommended to use version 1.11.14~1.11.5 of the official Singbox client.
 
     I am only able to understand v2ray urls like this example:
 
