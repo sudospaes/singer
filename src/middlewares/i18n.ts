@@ -12,7 +12,7 @@ const i18n = new Composer<BotContext>();
 i18n.use(
   new I18n<BotContext>({
     defaultLocale: "en",
-    directory: join(rootPath(), "src", "locales"),
+    directory: join(rootPath(), "locales"),
   })
 );
 
