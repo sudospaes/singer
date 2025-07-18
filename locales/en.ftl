@@ -26,8 +26,8 @@ guide =
 
     ♻️ It is recommended to use version <b>1.11.14~1.11.5</b> of the official Singbox client.
     
-    ℹ️ <b>What you send is never collected, stored, or shared;</b>.
-    <a href="https://github.com/sudospaes/singer/">See the source code to be sure</a>
+    ℹ️ <b>What you send is never collected, stored, or shared</b>.
+    <a href="https://github.com/sudospaes/singer/">See the source code to be sure</a>.
 
 
 unsupported-protocol =
