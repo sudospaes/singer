@@ -24,7 +24,7 @@ parser.on("callback_query:data", async (ctx) => {
   const singboxConfig = new TemplateAdapter(proxy, data);
   const buffer = Buffer.from(singboxConfig.export(), "utf-8");
 
-  const fileName = `@toSingBox-${generateTag()}-${data}.json`;
+  const fileName = `@toSingBoxBot-${generateTag()}-${data}.json`;
   await ctx.replyWithDocument(new InputFile(buffer, fileName), {
     caption: ctx.t("singbox-config-file-caption"),
   });
