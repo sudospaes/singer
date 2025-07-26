@@ -54,7 +54,7 @@ class TemplateAdapter {
           server_port: 2080,
         },
       },
-      stack: "system",
+      stack: "gvisor",
       strict_route: false,
     };
     return new SingboxInbound(inbound);
